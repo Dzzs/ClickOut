@@ -1,0 +1,9 @@
+c:\users\damion\documents\visual studio 2015\Projects\ClickOut\ClickOut\bin\Release\ClickOut.exe.config
+c:\users\damion\documents\visual studio 2015\Projects\ClickOut\ClickOut\bin\Release\ClickOut.exe
+c:\users\damion\documents\visual studio 2015\Projects\ClickOut\ClickOut\bin\Release\ClickOut.pdb
+c:\users\damion\documents\visual studio 2015\Projects\ClickOut\ClickOut\obj\Release\ClickOut.Form1.resources
+c:\users\damion\documents\visual studio 2015\Projects\ClickOut\ClickOut\obj\Release\ClickOut.Properties.Resources.resources
+c:\users\damion\documents\visual studio 2015\Projects\ClickOut\ClickOut\obj\Release\ClickOut.csproj.GenerateResource.Cache
+c:\users\damion\documents\visual studio 2015\Projects\ClickOut\ClickOut\obj\Release\ClickOut.exe
+c:\users\damion\documents\visual studio 2015\Projects\ClickOut\ClickOut\obj\Release\ClickOut.pdb
+c:\users\damion\documents\visual studio 2015\Projects\ClickOut\ClickOut\obj\Release\ClickOut.csprojResolveAssemblyReference.cache
