@@ -20,32 +20,37 @@ namespace ClickOut
         }
 
 
+        public bool gameRunning = false;
         Random RNG = new Random();
         public enum ButtonEnum { button1, button2, button3, button4, button5 };
         bool running = false;
         public int currentScore = 0;
         public int gameSpeed = 15;
 
-        public void GameThreads()
+        public void GameMoveThread()
         {
             Thread ButtonPlacementThread = new Thread(new ThreadStart(ButtonMoveInfoThread));
+
+            ButtonPlacementThread.IsBackground = true;
+
+            ButtonPlacementThread.Start();
+        }
+
+        public void GameOverThread()
+        {
             Thread GameOverCheckerThread = new Thread(new ThreadStart(GameOverCheckThread));
 
             GameOverCheckerThread.IsBackground = true;
-            ButtonPlacementThread.IsBackground = true;
 
             GameOverCheckerThread.Start();
-            ButtonPlacementThread.Start();
         }
-        
+
         private void GameOver()
         {
             Invoke((MethodInvoker)delegate
             {
                 scoreLabel.Text = "Score: " + currentScore;
                 startButton.BackgroundImage = Properties.Resources.darkSkull;
-                SetGameSpeed(500);
-                brokenButtonLabel.Show();
                 scoreLabel.Show();
                 gameOverLabel.Show();
                 startLabel.Show();
@@ -64,30 +69,40 @@ namespace ClickOut
 
         private void GameOverCheckThread()
         {
-            while (true)
+            while (gameRunning == true)
             {                
                 if ((button1.Location.X > 520 && button1.Location.X < 715) && (button1.Location.Y > 290 && button1.Location.Y < 410))
                 {
+                    gameRunning = false;
                     GameOver();
+                    break;
                 }
                 if ((button2.Location.X > 520 && button2.Location.X < 715) && (button2.Location.Y > 290 && button2.Location.Y < 410))
                 {
+                    gameRunning = false;
                     GameOver();
+                    break;
                 }
                 if ((button3.Location.X > 520 && button3.Location.X < 715) && (button3.Location.Y > 290 && button3.Location.Y < 410))
                 {
+                    gameRunning = false;
                     GameOver();
+                    break;
                 }
                 if ((button4.Location.X > 520 && button4.Location.X < 715) && (button4.Location.Y > 290 && button4.Location.Y < 410))
                 {
+                    gameRunning = false;
                     GameOver();
+                    break;
                 }
                 if ((button5.Location.X > 520 && button5.Location.X < 715) && (button5.Location.Y > 290 && button5.Location.Y < 410))
                 {
+                    gameRunning = false;
                     GameOver();
+                    break;
                 }
-                
-                Thread.Sleep(20);
+
+                Thread.Sleep(10);
             }
         }
 
@@ -110,9 +125,8 @@ namespace ClickOut
             int yToMove = 1;
 
 
-            while (true)
+            while (gameRunning == true)
             {
-
                 int b1 = button1.Location.X;
                 int b11 = button1.Location.Y;
                 int b2 = button2.Location.X;
@@ -486,10 +500,10 @@ namespace ClickOut
                     break;
             }
 
-            currentScore++;
+
         }
 
-        private void button1_MouseDown_1(object sender, MouseEventArgs e)
+        private void button1_MouseDown(object sender, MouseEventArgs e)
         {
             button1.Hide();
             ResetButton(ButtonEnum.button1);
@@ -521,30 +535,35 @@ namespace ClickOut
 
         private void button1_MouseUp(object sender, MouseEventArgs e)
         {
+            currentScore++;
             button1.Show();
             ResetButton(ButtonEnum.button1);
         }
 
         private void button2_MouseUp(object sender, MouseEventArgs e)
         {
+            currentScore++;
             button2.Show();
             ResetButton(ButtonEnum.button2);
         }
 
         private void button3_MouseUp(object sender, MouseEventArgs e)
         {
+            currentScore++;
             button3.Show();
             ResetButton(ButtonEnum.button3);
         }
 
         private void button4_MouseUp(object sender, MouseEventArgs e)
         {
+            currentScore++;
             button4.Show();
             ResetButton(ButtonEnum.button4);
         }
 
         private void button5_MouseUp(object sender, MouseEventArgs e)
         {
+            currentScore++;
             button5.Show();
             ResetButton(ButtonEnum.button5);
         }
@@ -556,6 +575,7 @@ namespace ClickOut
 
         private void ResetGame()
         {
+            gameRunning = true;
             if (speedSelectBoxes.GetItemChecked(0))
             {
                 SetGameSpeed(20);
@@ -569,7 +589,6 @@ namespace ClickOut
                 SetGameSpeed(10);
             }
             currentScore = 0;
-            brokenButtonLabel.Hide();
             gameOverLabel.Hide();
             scoreLabel.Hide();
             startLabel.Hide();
@@ -582,20 +601,20 @@ namespace ClickOut
             button4.Show();
             button5.Show();
             startButton.Hide();
-            if (running != true)
-            {
-                running = true;
-                GameThreads();
-            }
+            GameOverThread();
+            GameMoveThread();
+            
         }
 
         private void ResetAllButtons()
         {
+
             ResetButton(ButtonEnum.button1);
             ResetButton(ButtonEnum.button2);
             ResetButton(ButtonEnum.button3);
             ResetButton(ButtonEnum.button4);
             ResetButton(ButtonEnum.button5);
+
         }
 
         private void startButton_MouseUp(object sender, MouseEventArgs e)
@@ -610,5 +629,6 @@ namespace ClickOut
                 for (int ix = 0; ix < speedSelectBoxes.Items.Count; ++ix)
                     if (e.Index != ix) speedSelectBoxes.SetItemChecked(ix, false);
         }
+
     }
 }

@@ -34,7 +34,6 @@
             this.startLabel = new System.Windows.Forms.Label();
             this.speedSelectLabel = new System.Windows.Forms.Label();
             this.speedSelectBoxes = new System.Windows.Forms.CheckedListBox();
-            this.brokenButtonLabel = new System.Windows.Forms.Label();
             this.startButton = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
@@ -104,18 +103,6 @@
             this.speedSelectBoxes.TabIndex = 0;
             this.speedSelectBoxes.TabStop = false;
             this.speedSelectBoxes.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.speedSelectBoxes_ItemCheck);
-            // 
-            // brokenButtonLabel
-            // 
-            this.brokenButtonLabel.AutoSize = true;
-            this.brokenButtonLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.brokenButtonLabel.Location = new System.Drawing.Point(324, 454);
-            this.brokenButtonLabel.Name = "brokenButtonLabel";
-            this.brokenButtonLabel.Size = new System.Drawing.Size(680, 20);
-            this.brokenButtonLabel.TabIndex = 7;
-            this.brokenButtonLabel.Text = "If the restart button doesn\'t work keep clicking until it does. There is nothing " +
-    "I can do about that.";
-            this.brokenButtonLabel.Visible = false;
             // 
             // startButton
             // 
@@ -211,7 +198,7 @@
             this.button1.Text = "           ";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Visible = false;
-            this.button1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button1_MouseDown_1);
+            this.button1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button1_MouseDown);
             this.button1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.button1_MouseUp);
             // 
             // deathBox
@@ -233,7 +220,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(1264, 682);
-            this.Controls.Add(this.brokenButtonLabel);
             this.Controls.Add(this.speedSelectBoxes);
             this.Controls.Add(this.speedSelectLabel);
             this.Controls.Add(this.startLabel);
@@ -270,7 +256,6 @@
         private System.Windows.Forms.Label startLabel;
         private System.Windows.Forms.Label speedSelectLabel;
         private System.Windows.Forms.CheckedListBox speedSelectBoxes;
-        private System.Windows.Forms.Label brokenButtonLabel;
     }
 }
 
